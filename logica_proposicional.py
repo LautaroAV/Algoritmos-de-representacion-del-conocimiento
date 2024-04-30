@@ -49,7 +49,7 @@ def build_logical_expression(sentence):
     return logical_expr
 
 # Ejemplo de uso
-sentence = "El o yo"
+sentence = "Perro y Gato"
 logical_expr = build_logical_expression(sentence)
 if logical_expr:
     print("Expresión lógica construida:", logical_expr)
