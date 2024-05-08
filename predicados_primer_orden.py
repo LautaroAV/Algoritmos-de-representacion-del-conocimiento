@@ -28,7 +28,6 @@ class SistemaRecomendacionMedica:
         else:
             return "No se encontró información sobre el tratamiento para esta enfermedad."
 
-# Ejemplo de uso
 sistema = SistemaRecomendacionMedica()
 
 sintomas_paciente = ["temperatura alta", "ojos rojos", "dificultad para respirar"]
