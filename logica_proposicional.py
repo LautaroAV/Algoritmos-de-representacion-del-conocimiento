@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import messagebox
 import sympy as sp
 import re
 
@@ -47,23 +49,39 @@ def construir_expresion_logica(oracion):
     
     return expr_logica
 
-# Ejemplo de uso
-oracion = "Perro y Gato"
-expr_logica = construir_expresion_logica(oracion)
-if expr_logica:
-    print("Expresión lógica construida:", expr_logica)
+def calcular_tabla():
+    oracion = entrada_oracion.get()
+    expr_logica = construir_expresion_logica(oracion)
+    if expr_logica:
+        tabla_resultados.delete('1.0', tk.END)
+        variables = list(expr_logica.free_symbols)
+        encabezados = [str(variable) for variable in variables] + ["Resultado"]
+        tabla_resultados.insert(tk.END, "\t".join(encabezados) + "\n")
 
-    # Calcular la tabla de verdad
-    variables = list(expr_logica.free_symbols)
-    encabezados = [str(variable) for variable in variables] + ["Resultado"]
-    print("\t".join(encabezados))
+        valores_verdad = [(True, False)] * len(variables)
+        for combinacion in sp.cartes(*valores_verdad):
+            modelo = {var: val for var, val in zip(variables, combinacion)}
+            valores_modelo = [modelo[var] for var in variables]
+            resultado = expr_logica.subs(modelo)
+            tabla_resultados.insert(tk.END, "\t".join(map(str, valores_modelo + [resultado])) + "\n")
+    else:
+        messagebox.showerror("Error", "No se encontraron operadores lógicos en la oración.")
 
-    # Generar todas las combinaciones posibles de valores verdaderos y falsos para las variables
-    valores_verdad = [(True, False)] * len(variables)
-    for combinacion in sp.cartes(*valores_verdad):
-        modelo = {var: val for var, val in zip(variables, combinacion)}
-        valores_modelo = [modelo[var] for var in variables]
-        resultado = expr_logica.subs(modelo)
-        print("\t".join(map(str, valores_modelo + [resultado])))
-else:
-    print("No se encontraron operadores lógicos en la oración.")
+# Crear ventana
+ventana = tk.Tk()
+ventana.title("Calculadora de Tabla de Verdad")
+
+# Etiqueta y entrada para la oración
+tk.Label(ventana, text="Oración Lógica:").pack()
+entrada_oracion = tk.Entry(ventana, width=50)
+entrada_oracion.pack()
+
+# Botón para calcular la tabla de verdad
+tk.Button(ventana, text="Calcular Tabla de Verdad", command=calcular_tabla).pack()
+
+# Área de texto para mostrar la tabla de verdad
+tk.Label(ventana, text="Tabla de Verdad:").pack()
+tabla_resultados = tk.Text(ventana, height=10, width=50)
+tabla_resultados.pack()
+
+ventana.mainloop()

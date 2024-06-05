@@ -1,0 +1,32 @@
+{
+    "fiebre": {
+        "sintomas": [
+            "temperatura alta",
+            "dolor de cabeza"
+        ],
+        "tratamiento": "descansar y tomar líquidos"
+    },
+    "gripe": {
+        "sintomas": [
+            "fiebre",
+            "tos",
+            "dolor de garganta"
+        ],
+        "tratamiento": "descansar, tomar líquidos y medicamentos para la fiebre"
+    },
+    "resfriado": {
+        "sintomas": [
+            "nariz congestionada",
+            "estornudos"
+        ],
+        "tratamiento": "descansar y tomar líquidos"
+    },
+    "Malaria": {
+        "sintomas": [
+            "Dolor de pilin",
+            "sexo",
+            "ostras"
+        ],
+        "tratamiento": "Culear mas"
+    }
+}

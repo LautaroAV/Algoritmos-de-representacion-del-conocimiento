@@ -1,0 +1,46 @@
+[
+    {
+        "texto": "Viagra a buen precio",
+        "categoria": "spam"
+    },
+    {
+        "texto": "Quedamos ma\u00c3\u00b1ana lunes para ir al cine",
+        "categoria": "nospam"
+    },
+    {
+        "texto": "Replicas de relojes y viagra a precios de risa",
+        "categoria": "spam"
+    },
+    {
+        "texto": "Disponga de sus productos farmaceuticos en 24 horas",
+        "categoria": "spam"
+    },
+    {
+        "texto": "La Inteligencia Artificial es una disciplina muy interesante",
+        "categoria": "nospam"
+    },
+    {
+        "texto": "Ofertas de Viagra",
+        "categoria": "spam"
+    },
+    {
+        "texto": "Nuevo Arancel del mes de Junio - Universidad Cima de Oro",
+        "categoria": "nospam"
+    },
+    {
+        "texto": "Nuevos horarios de atencion en la farmaceutica",
+        "categoria": "spam"
+    },
+    {
+        "texto": "Descuento 2x1 en productos de viagra",
+        "categoria": "spam"
+    },
+    {
+        "texto": "Compre las entradas para el concierto",
+        "categoria": "nospam"
+    },
+    {
+        "texto": "Compra hermosos relojes ahora",
+        "categoria": "spam"
+    }
+]
