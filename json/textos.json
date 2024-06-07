@@ -42,5 +42,13 @@
     {
         "texto": "Compra hermosos relojes ahora",
         "categoria": "spam"
+    },
+    {
+        "texto": "venta de viagra",
+        "categoria": "spam"
+    },
+    {
+        "texto": "a",
+        "categoria": "spam"
     }
 ]

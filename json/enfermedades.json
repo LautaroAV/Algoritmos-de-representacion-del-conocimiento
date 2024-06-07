@@ -2,31 +2,48 @@
     "fiebre": {
         "sintomas": [
             "temperatura alta",
-            "dolor de cabeza"
+            "dolor de cabeza",
+            "escalofríos",
+            "sudoración"
         ],
-        "tratamiento": "descansar y tomar líquidos"
+        "tratamiento": [
+            "descansar",
+            "tomar líquidos",
+            "usar compresas frías",
+            "tomar antipiréticos si es necesario"
+        ]
     },
     "gripe": {
         "sintomas": [
             "fiebre",
             "tos",
-            "dolor de garganta"
+            "dolor de garganta",
+            "dolores musculares",
+            "fatiga",
+            "congestión nasal"
         ],
-        "tratamiento": "descansar, tomar líquidos y medicamentos para la fiebre"
+        "tratamiento": [
+            "descansar",
+            "tomar líquidos",
+            "medicamentos para reducir la fiebre",
+            "antivirales en algunos casos",
+            "remedios para aliviar la tos y la congestión"
+        ]
     },
     "resfriado": {
         "sintomas": [
             "nariz congestionada",
-            "estornudos"
+            "estornudos",
+            "dolor de garganta",
+            "tos leve",
+            "ojos llorosos",
+            "fatiga"
         ],
-        "tratamiento": "descansar y tomar líquidos"
-    },
-    "Malaria": {
-        "sintomas": [
-            "Dolor de pilin",
-            "sexo",
-            "ostras"
-        ],
-        "tratamiento": "Culear mas"
+        "tratamiento": [
+            "descansar",
+            "tomar líquidos",
+            "usar humidificadores",
+            "remedios para aliviar la congestión y la tos"
+        ]
     }
 }

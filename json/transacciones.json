@@ -13,7 +13,7 @@
     [
         "Pan",
         "Queso",
-        "Jam\u00f3n"
+        "Jamón"
     ],
     [
         "Cereal",
@@ -29,7 +29,7 @@
         "Cereal",
         "Leche",
         "Mantequilla",
-        "Jam\u00f3n"
+        "Jamón"
     ],
     [
         "Leche",
@@ -43,15 +43,5 @@
     [
         "Leche",
         "Mantequilla"
-    ],
-    [
-        "Pan",
-        "Queso",
-        "Leche"
-    ],
-    [
-        "Queso",
-        "Jam\u00f3n",
-        "Salchicha"
     ]
 ]

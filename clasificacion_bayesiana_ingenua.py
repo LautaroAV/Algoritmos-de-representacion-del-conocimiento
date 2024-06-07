@@ -89,9 +89,10 @@ def clasificador_spam():
     
     ventana = tk.Tk()
     ventana.title("Clasificador de Spam")
+    ventana.geometry("370x200")  
     
     label_texto = ttk.Label(ventana, text="Texto:")
-    label_texto.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+    label_texto.grid(row=0, column=0, padx=5, pady=35, sticky="w")
     
     entry_texto = ttk.Entry(ventana, width=50)
     entry_texto.grid(row=0, column=1, padx=5, pady=5)

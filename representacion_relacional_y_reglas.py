@@ -11,18 +11,16 @@ class AprioriApp:
 
         self.ventana = tk.Tk()
         self.ventana.title("Algoritmo Apriori")
+        self.ventana.geometry("520x600")
 
-        # Botón para ejecutar el algoritmo Apriori
         btn_ejecutar = tk.Button(self.ventana, text="Ejecutar Apriori", command=self.ejecutar_apriori)
-        btn_ejecutar.pack()
+        btn_ejecutar.pack(pady=10)
 
-        # Widget de texto para mostrar los resultados
         self.resultado_texto = scrolledtext.ScrolledText(self.ventana, width=60, height=30)
-        self.resultado_texto.pack()
+        self.resultado_texto.pack(pady=10)
 
-        # Botón para agregar nueva transacción
         btn_agregar_transaccion = tk.Button(self.ventana, text="Agregar Nueva Transacción", command=self.abrir_ventana_agregar_transaccion)
-        btn_agregar_transaccion.pack()
+        btn_agregar_transaccion.pack(pady=10)
 
     def cargar_transacciones(self):
         try:
@@ -31,7 +29,6 @@ class AprioriApp:
         except FileNotFoundError:
             messagebox.showerror("Error", "No se encontró el archivo 'transacciones.json'.")
             return []
-
 
     def guardar_transacciones(self):
         with open('./json/transacciones.json', 'w') as f:
@@ -45,19 +42,19 @@ class AprioriApp:
 
         # Aplicación del algoritmo Apriori
         frequent_itemsets = apriori(df, min_support=0.2, use_colnames=True)
-        self.resultado_texto.delete(1.0, tk.END)  # Limpiar resultados anteriores
+        self.resultado_texto.delete(1.0, tk.END)
         self.resultado_texto.insert(tk.END, str(frequent_itemsets))
 
     def abrir_ventana_agregar_transaccion(self):
         ventana_agregar_transaccion = tk.Toplevel(self.ventana)
         ventana_agregar_transaccion.title("Agregar Nueva Transacción")
 
-        tk.Label(ventana_agregar_transaccion, text="Nueva Transacción (separada por coma y espacio):").pack()
+        tk.Label(ventana_agregar_transaccion, text="Nueva Transacción (separada por coma y espacio):").pack(pady=10)
         nueva_transaccion_entry = tk.Entry(ventana_agregar_transaccion, width=50)
-        nueva_transaccion_entry.pack()
+        nueva_transaccion_entry.pack(pady=10)
 
         btn_guardar = tk.Button(ventana_agregar_transaccion, text="Guardar", command=lambda: self.guardar_nueva_transaccion(nueva_transaccion_entry.get()))
-        btn_guardar.pack()
+        btn_guardar.pack(pady=10)
 
     def guardar_nueva_transaccion(self, nueva_transaccion):
         if nueva_transaccion:

@@ -4,17 +4,14 @@ import sympy as sp
 import re
 
 def interpretar_logica(oracion):
-    # Definimos un diccionario con los patrones de los operadores lógicos
     patrones_logicos = {
-        'conjunción': re.compile(r'\by\b'),   # 'y' para conjunción
-        'disyunción': re.compile(r'\bo\b'),   # 'o' para disyunción
-        'implicación': re.compile(r'\bSi\b\s+(.*?)\s*\bentonces\b\s+(.*)', re.IGNORECASE), # 'Si' seguido de 'entonces' para implicación
-        'negación': re.compile(r'\bno\b'),    # 'no' para negación
+        'conjunción': re.compile(r'\by\b'),  
+        'disyunción': re.compile(r'\bo\b'),   
+        'implicación': re.compile(r'\bSi\b\s+(.*?)\s*\bentonces\b\s+(.*)', re.IGNORECASE), 
+        'negación': re.compile(r'\bno\b'),   
     }
-    # Buscamos los operadores lógicos en la oración
     operadores_encontrados = {logica: patron.search(oracion.lower()) for logica, patron in patrones_logicos.items() if patron.search(oracion.lower())}
 
-    # Preparamos la respuesta
     if operadores_encontrados:
         return operadores_encontrados
     else:
@@ -26,27 +23,23 @@ def construir_expresion_logica(oracion):
         return None
 
     expr_logica = None
-    for logica, coincidencia in operadores.items():
-        if logica == 'conjunción':
-            partes = re.split(r'\by\b', oracion, flags=re.IGNORECASE)
-            expr1 = sp.Symbol(partes[0].strip())
-            expr2 = sp.Symbol(partes[1].strip())
-            expr_logica = sp.And(expr1, expr2)
-        elif logica == 'disyunción':
-            partes = re.split(r'\bo\b', oracion, flags=re.IGNORECASE)
-            expr1 = sp.Symbol(partes[0].strip())
-            expr2 = sp.Symbol(partes[1].strip())
-            expr_logica = sp.Or(expr1, expr2)
-        elif logica == 'implicación':
-            partes = re.split(r'\bSi\b\s+|\s*\bentonces\b', oracion, flags=re.IGNORECASE)
-            expr1 = sp.Symbol(partes[1].strip())
-            expr2 = sp.Symbol(partes[2].strip())
-            expr_logica = sp.Implies(expr1, expr2)
-        elif logica == 'negación':
-            partes = re.split(r'\bno\b', oracion, flags=re.IGNORECASE)
-            expr = sp.Symbol(partes[1].strip())
-            expr_logica = sp.Not(expr)
-    
+    operador = list(operadores.keys())[0] 
+    if operador == 'conjunción':
+        partes = re.split(r'\by\b', oracion, flags=re.IGNORECASE)
+        expr1, expr2 = map(lambda x: sp.Symbol(x.strip()), partes)
+        expr_logica = sp.And(expr1, expr2)
+    elif operador == 'disyunción':
+        partes = re.split(r'\bo\b', oracion, flags=re.IGNORECASE)
+        expr1, expr2 = map(lambda x: sp.Symbol(x.strip()), partes)
+        expr_logica = sp.Or(expr1, expr2)
+    elif operador == 'implicación':
+        partes = re.split(r'\bSi\b\s+|\s*\bentonces\b', oracion, flags=re.IGNORECASE)
+        expr1, expr2 = map(lambda x: sp.Symbol(x.strip()), partes[1:])
+        expr_logica = sp.Implies(expr1, expr2)
+    elif operador == 'negación':
+        partes = re.split(r'\bno\b', oracion, flags=re.IGNORECASE)
+        expr = sp.Symbol(partes[1].strip())
+        expr_logica = sp.Not(expr)
     return expr_logica
 
 def calcular_tabla():
@@ -57,7 +50,6 @@ def calcular_tabla():
         variables = list(expr_logica.free_symbols)
         encabezados = [str(variable) for variable in variables] + ["Resultado"]
         tabla_resultados.insert(tk.END, "\t".join(encabezados) + "\n")
-
         valores_verdad = [(True, False)] * len(variables)
         for combinacion in sp.cartes(*valores_verdad):
             modelo = {var: val for var, val in zip(variables, combinacion)}
@@ -67,19 +59,16 @@ def calcular_tabla():
     else:
         messagebox.showerror("Error", "No se encontraron operadores lógicos en la oración.")
 
-# Crear ventana
 ventana = tk.Tk()
 ventana.title("Calculadora de Tabla de Verdad")
+ventana.geometry("500x300")
 
-# Etiqueta y entrada para la oración
 tk.Label(ventana, text="Oración Lógica:").pack()
 entrada_oracion = tk.Entry(ventana, width=50)
 entrada_oracion.pack()
 
-# Botón para calcular la tabla de verdad
 tk.Button(ventana, text="Calcular Tabla de Verdad", command=calcular_tabla).pack()
 
-# Área de texto para mostrar la tabla de verdad
 tk.Label(ventana, text="Tabla de Verdad:").pack()
 tabla_resultados = tk.Text(ventana, height=10, width=50)
 tabla_resultados.pack()
